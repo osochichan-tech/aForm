@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+
+    <script>
+        function ventana() {
+            var formulario = document.forms["registro"];
+            var nuevaVentana = window.open("", "_blank", "width=600,height=500");
+
+            if (!nuevaVentana) {
+                alert("Permite las ventanas emergentes para ver tus datos.");
+                return;
+            }
+
+            var doc = nuevaVentana.document;
+            doc.open();
+            doc.write(
+                "<!DOCTYPE html><html lang='es'>" +
+                "<head><meta charset='UTF-8'><title>Verifica tus datos</title></head>" +
+                "<body></body></html>"
+            );
+            doc.close();
+
+            doc.body.style.fontFamily = "Arial, sans-serif";
+            doc.body.style.padding = "24px";
+
+            var titulo = doc.createElement("h1");
+            titulo.textContent = "Verifica tus datos";
+            doc.body.appendChild(titulo);
+
+            var datos = [
+                [
+                    "Nombre",
+                    formulario.elements["txtnombre"].value + " " +
+                    formulario.elements["txtpaterno"].value + " " +
+                    formulario.elements["txtmaterno"].value
+                ],
+                [
+                    "Fecha de nacimiento",
+                    formulario.elements["DIA"].value + "/" +
+                    formulario.elements["MES"].value + "/" +
+                    formulario.elements["txtage"].value
+                ],
+                ["Dirección", formulario.elements["txtdir"].value],
+                ["Teléfono", formulario.elements["txttel"].value],
+                ["Email", formulario.elements["txtemail"].value]
+            ];
+
+            for (var i = 0; i < datos.length; i++) {
+                var parrafo = doc.createElement("p");
+                var etiqueta = doc.createElement("strong");
+
+                etiqueta.textContent = datos[i][0] + ": ";
+                parrafo.appendChild(etiqueta);
+                parrafo.appendChild(doc.createTextNode(datos[i][1]));
+                doc.body.appendChild(parrafo);
+            }
+
+            var botonCerrar = doc.createElement("button");
+            botonCerrar.type = "button";
+            botonCerrar.textContent = "Cerrar";
+            botonCerrar.onclick = function () {
+                nuevaVentana.close();
+            };
+            doc.body.appendChild(botonCerrar);
+        }
+
+        function enviar(event) {
+            event.preventDefault();
+            ventana();
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Registro</h1>
+
+    <form name="registro" onsubmit="return enviar(event)">
+        <p>
+            <label>Nombre:
+                <input type="text" name="txtnombre" required>
+            </label>
+        </p>
+
+        <p>
+            <label>Apellido paterno:
+                <input type="text" name="txtpaterno" required>
+            </label>
+        </p>
+
+        <p>
+            <label>Apellido materno:
+                <input type="text" name="txtmaterno" required>
+            </label>
+        </p>
+
+        <p>
+            <label>Día:
+                <input type="number" name="DIA" min="1" max="31" required>
+            </label>
+
+            <label>Mes:
+                <input type="number" name="MES" min="1" max="12" required>
+            </label>
+
+            <label>Año:
+                <input type="number" name="txtage" min="1900" max="2100" required>
+            </label>
+        </p>
+
+        <p>
+            <label>Dirección:
+                <input type="text" name="txtdir" required>
+            </label>
+        </p>
+
+        <p>
+            <label>Teléfono:
+                <input type="tel" name="txttel" required>
+            </label>
+        </p>
+
+        <p>
+            <label>Email:
+                <input type="email" name="txtemail" required>
+            </label>
+        </p>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

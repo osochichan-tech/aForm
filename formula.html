@@ -1,0 +1,120 @@
+<html>
+<head>
+    <title>EJEMPLO VENTANA</title>
+
+    <script language="JavaScript">
+        var nventana;
+        var nombre;
+        var paterno;
+        var materno;
+        var dia;
+        var mes;
+        var age;
+        var direction;
+        var telefono;
+        var email;
+
+        function ventana() {
+            var datos = document.forms["registro"];
+
+            nombre = datos.elements["txtnombre"].value;
+            paterno = datos.elements["txtpaterno"].value;
+            materno = datos.elements["txtmaterno"].value;
+            dia = datos.elements["DIA"].value;
+            mes = datos.elements["MES"].value;
+            age = datos.elements["txtage"].value;
+            direction = datos.elements["txtdir"].value;
+            telefono = datos.elements["txttel"].value;
+            email = datos.elements["txtemail"].value;
+
+            nventana = window.open("", "_blank");
+
+            if (!nventana) {
+                alert("Permite las ventanas emergentes para ver tus datos.");
+                return;
+            }
+
+            nventana.document.open();
+            nventana.document.write(
+                "<html><head><title>VENTANA2</title></head>" +
+                "<body background='tm.jpg'>" +
+                "<h1><center>VERIFICA TUS DATOS</center></h1>"
+            );
+            nventana.document.write(
+                "<font face='Chalkduster' size='4'><strong>"
+            );
+            nventana.document.write(
+                "Nombre: <u>" + nombre + "&nbsp;&nbsp;" +
+                paterno + "&nbsp;&nbsp;" + materno + "</u><br><br>"
+            );
+            nventana.document.write(
+                "Fecha de nacimiento: <u>" + dia + "/" + mes + "/" +
+                age + "</u><br><br>"
+            );
+            nventana.document.write(
+                "Dirección: <u>" + direction + "</u><br><br>"
+            );
+            nventana.document.write(
+                "Teléfono: <u>" + telefono + "</u><br><br>"
+            );
+            nventana.document.write(
+                "Email: <u>" + email + "</u><br><br>"
+            );
+            nventana.document.write("</strong></font>");
+            nventana.document.write(
+                "<input type='button' onclick='window.close()' value='Cerrar'>"
+            );
+            nventana.document.write("</body></html>");
+            nventana.document.close();
+        }
+
+        function enviar() {
+            ventana();
+            return false;
+        }
+    </script>
+</head>
+
+<body background="Dt.jpg">
+    <font color="#00BFFF" size="5">
+        <strong>
+
+            <form method="POST" name="registro" onsubmit="return enviar()">
+                Nombre:
+                <input type="text" name="txtnombre" size="20" maxlength="20" required>
+                <br><br>
+
+                A. Paterno:
+                <input type="text" name="txtpaterno" size="20" maxlength="20" required>
+                <br><br>
+
+                A. Materno:
+                <input type="text" name="txtmaterno" size="20" maxlength="20" required>
+                <br><br>
+
+                Fecha de nacimiento:
+                Día: <input type="number" name="DIA" min="1" max="31" required>
+                Mes: <input type="number" name="MES" min="1" max="12" required>
+                Año: <input type="number" name="txtage" min="1900" max="2100" required>
+                <br><br>
+
+                Dirección:
+                <input type="text" name="txtdir" required>
+                <br><br>
+
+                Teléfono:
+                <input type="tel" name="txttel" required>
+                <br><br>
+
+                Email:
+                <input type="email" name="txtemail" size="40" value="@lasmanos.com" required>
+                <br><br>
+
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Borrar">
+            </form>
+
+        </strong>
+    </font>
+</body>
+</html>

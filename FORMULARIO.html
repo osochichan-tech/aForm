@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJEMPLO VENTANA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <form method="POST" name="registro" onsubmit="return enviar()">
+        Nombre:
+        <input type="text" name="txtnombre" size="20" maxlength="20" required>
+        <br><br>
+
+        A. Paterno:
+        <input type="text" name="txtpaterno" size="20" maxlength="20" required>
+        <br><br>
+
+        A. Materno:
+        <input type="text" name="txtmaterno" size="20" maxlength="20" required>
+        <br><br>
+
+        Fecha de nacimiento:
+        Día: <input type="number" name="DIA" min="1" max="31" required>
+        Mes: <input type="number" name="MES" min="1" max="12" required>
+        Año: <input type="number" name="txtage" min="1900" max="2100" required>
+        <br><br>
+
+        Dirección:
+        <input type="text" name="txtdir" required>
+        <br><br>
+
+        Teléfono:
+        <input type="tel" name="txttel" required>
+        <br><br>
+
+        Email:
+        <input type="email" name="txtemail" size="40" value="@lasmanos.com" required>
+        <br><br>
+
+        <input type="button" onclick="ventana(this.form)" value="Revisar Datos">
+        <input type="button" name="cancela" value="Borrar Contenido" onclick="borrarDatos()">
+        <input type="submit" name="envio" value="Enviar Datos">
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
